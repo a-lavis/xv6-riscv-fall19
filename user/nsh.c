@@ -101,7 +101,7 @@ execute(char *argv[]) {
 	}
 }
 
-void parsepipe(char *giver, char *taker);
+void dopipe(char *rest);
 
 void
 parse(char *buf) {
@@ -115,7 +115,7 @@ parse(char *buf) {
 	for (k = 0; buf[k] != 0; k++) {
 		if (buf[k] == '|') {
 			buf[k] = 0; // seperate into two strings
-			parsepipe(buf, &buf[k+1]);
+			dopipe(&buf[k+1]);
 			break;
 		}
 	}
@@ -151,7 +151,7 @@ safe_fork() {
 }
 
 void
-parsepipe(char *giver, char *taker) {
+dopipe(char *rest) {
 	int pipe_fd[2];
 	pipe(pipe_fd);
 
@@ -161,13 +161,13 @@ parsepipe(char *giver, char *taker) {
 		close(pipe_fd[0]);     // close old file descriptors
 		close(pipe_fd[1]);
 		// continue executing where you left off in parse
-	} else {// execute a new parse for taker
+	} else {// execute a new parse for the rest
 		if (safe_fork() == 0) {
 			close(0);        // close stdin
 			dup(pipe_fd[0]); // make pipe_fd[0] the new stdin
 			close(pipe_fd[0]);     // close old file descriptors
 			close(pipe_fd[1]);
-			parse(taker);
+			parse(rest);
 		}
 
 		close(pipe_fd[0]); // close pipe so that no one waits for it
