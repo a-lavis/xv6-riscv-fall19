@@ -1,3 +1,14 @@
+Forked for my Operating Systems Intensive class.  
+In the `master` branch, I implemented the unix utilities find and xargs.
+I also implemented my own Unix shell,
+capable of handling pipes and I/O redirection.
+In the `syscall` branch,
+I first implemented user-level threads in C and RISC-V.
+Then, I modified the kernel to include and accommodate a syscall
+that calls a specified function repeatedly at a specified interval.
+
+---- Original README -------------------------------------------------
+
 xv6 is a re-implementation of Dennis Ritchie's and Ken Thompson's Unix
 Version 6 (v6).  xv6 loosely follows the structure and style of v6,
 but is implemented for a modern RISC-V multiprocessor using ANSI C.
