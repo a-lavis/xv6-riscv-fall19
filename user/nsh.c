@@ -227,37 +227,3 @@ main(int argc, char *argv[])
 	}
 	exit(0);
 }
-
-
-///////////////////////////
-//garbage i want to keep //
-///////////////////////////
-
-/*
-void
-cd_command (char *argv[]) {
-	if (strcmp(argv[0], "cd") != 0) {
-		fprintf(2, "how did you get to cd: %s\n", argv[0]);
-		exit(1);
-	}
-
-	char buf[MAXBUF-3];
-	int k = 0;
-
-	for(int i = 1; argv[i] != 0; i++) {
-		for(int j = 0; argv[i][j] != 0; j++) {
-			buf[k] = argv[i][j];
-			k++;
-		}
-		buf[k] = ' ';
-		k++;
-	}
-	buf[k-1] = 0;
-	if(chdir(buf) < 0) {
-		fprintf(2, "cannot cd %s\n", buf);
-		exit(1);
-	}
-	fprintf(2, "did cd %s\n", buf);
-	exit(0);
-}
-*/
